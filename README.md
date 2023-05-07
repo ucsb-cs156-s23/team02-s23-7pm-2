@@ -1,7 +1,7 @@
 # STARTER-team02
 
-* Production: <http://team02-prod.dokku-10.cs.ucsb.edu>
-* QA: <http://team02-qa.dokku-10.cs.ucsb.edu>
+* Production: <https://team02-prod.dokku-10.cs.ucsb.edu>
+* QA: <https://team02-qa.dokku-10.cs.ucsb.edu>
 
 # Configuring GitHub Pages for the documentation
 
