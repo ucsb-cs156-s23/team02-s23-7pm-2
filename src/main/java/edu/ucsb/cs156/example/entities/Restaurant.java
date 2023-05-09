@@ -12,7 +12,7 @@ import lombok.Builder;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity(name = "restaurant")
+@Entity(name = "Restaurant")
 public class Restaurant {
   @Id
   private String code;
