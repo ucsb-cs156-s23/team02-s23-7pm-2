@@ -57,12 +57,12 @@ public class LaptopsController extends ApiController {
             @ApiParam("cpu") @RequestParam String cpu,
             @ApiParam("gpu") @RequestParam String gpu,
             @ApiParam("description") @RequestParam String description
-    ) throws JsonProcessingException {
+    ) {
 
         Laptop laptop = new Laptop();
         laptop.setName(name);
-        laptop.setCPU(cpu);
-        laptop.setGPU(gpu);
+        laptop.setCpu(cpu);
+        laptop.setGpu(gpu);
         laptop.setDescription(description);
 
         Laptop savedLaptop = laptopRepository.save(laptop);
@@ -93,8 +93,8 @@ public class LaptopsController extends ApiController {
                 .orElseThrow(() -> new EntityNotFoundException(Laptop.class, id));
 
         laptop.setName(incoming.getName());
-        laptop.setCPU(incoming.getCPU());
-        laptop.setGPU(incoming.getGPU());
+        laptop.setCpu(incoming.getCpu());
+        laptop.setGpu(incoming.getGpu());
         laptop.setDescription(incoming.getDescription());
 
         laptopRepository.save(laptop);
