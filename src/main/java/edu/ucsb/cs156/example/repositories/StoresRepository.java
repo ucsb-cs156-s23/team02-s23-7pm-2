@@ -9,4 +9,4 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface StoresRepository extends CrudRepository<Store, Long> {
   Iteratable<Store> findAllByName(String name);
-}
+} 
