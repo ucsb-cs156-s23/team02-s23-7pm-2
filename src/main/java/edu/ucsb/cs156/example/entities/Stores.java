@@ -24,4 +24,4 @@ public class Stores {
   private String name;  
   private String price;
   private String sales;
-}
+} 
