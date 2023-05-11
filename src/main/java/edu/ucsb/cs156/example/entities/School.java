@@ -12,8 +12,8 @@ import lombok.Builder;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity(name = "Restaurant")
-public class Restaurant {
+@Entity(name = "schools")
+public class School {
   @Id
   private String name;
   private String rank;
