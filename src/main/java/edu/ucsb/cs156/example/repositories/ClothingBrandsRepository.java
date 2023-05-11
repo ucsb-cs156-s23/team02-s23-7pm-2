@@ -8,5 +8,4 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ClothingBrandsRepository extends CrudRepository<ClothingBrands, Long> {
-  Iterable<ClothingBrands> findAllByName(String name);
 }
