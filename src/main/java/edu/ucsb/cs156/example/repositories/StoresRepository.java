@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface StoresRepository extends CrudRepository<Store, Long> {
-  //Iterable<Store> findAllByQuarterYYYYQ(String quarterYYYYQ);
+  Iteratable<Store> findAllByName(String name);
 }

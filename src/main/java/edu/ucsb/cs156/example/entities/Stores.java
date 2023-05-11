@@ -1,7 +1,5 @@
 package edu.ucsb.cs156.example.entities;
 
-import java.time.LocalDateTime;
-
 import javax.persistence.Entity;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,7 +14,7 @@ import lombok.Builder;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity(name = "stores")
+@Entity(name = "Stores")
 public class Store {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
