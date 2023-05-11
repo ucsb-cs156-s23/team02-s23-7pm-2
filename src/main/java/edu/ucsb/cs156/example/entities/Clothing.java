@@ -13,8 +13,8 @@ import lombok.Builder;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity(name = "clothingbrands")
-public class ClothingBrands {
+@Entity(name = "clothings")
+public class Clothing {
   @Id
   private String brand;
   private String price;
