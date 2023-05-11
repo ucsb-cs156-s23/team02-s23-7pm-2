@@ -56,9 +56,7 @@ public class RestaurantController extends ApiController {
     public Restaurant postrestaurant(
         @ApiParam("code") @RequestParam String code,
         @ApiParam("name") @RequestParam String name,
-        @ApiParam("hasSackMeal") @RequestParam boolean hasSackMeal,
         @ApiParam("hasTakeOutMeal") @RequestParam boolean hasTakeOutMeal,
-        @ApiParam("hasDiningCam") @RequestParam boolean hasDiningCam,
         @ApiParam("latitude") @RequestParam double latitude,
         @ApiParam("longitude") @RequestParam double longitude
         )
