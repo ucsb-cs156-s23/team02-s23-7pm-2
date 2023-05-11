@@ -16,6 +16,7 @@ import lombok.Builder;
 @Entity(name = "clothingbrands")
 public class ClothingBrands {
   @Id
+  private String code;
   private String brand;
   private String price;
 }
