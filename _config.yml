@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s23/team02-s23-7pm-2
 owner: ucsb-cs156-s23
 repo_name: team02-s23-7pm-2
-pull_requests: [{"author":{"id":"U_kgDOBXu4sA","is_bot":false,"login":"ColinBaylis","name":""},"headRefName":"Colin-StoresDatabaseTable","number":52,"title":"Colin stores database table","url":"https://github.com/ucsb-cs156-s23/team02-s23-7pm-2/pull/52"},{"author":{"id":"MDQ6VXNlcjY0Mzg1Mzgw","is_bot":false,"login":"justinthecao","name":"Justin Cao"},"headRefName":"jc-controller","number":45,"title":"adding School Controller","url":"https://github.com/ucsb-cs156-s23/team02-s23-7pm-2/pull/45"}]
+pull_requests: [{"author":{"id":"U_kgDOBXu4sA","is_bot":false,"login":"ColinBaylis","name":""},"headRefName":"Colin-StoresDatabaseTable","number":52,"title":"Colin stores database table","url":"https://github.com/ucsb-cs156-s23/team02-s23-7pm-2/pull/52"}]
