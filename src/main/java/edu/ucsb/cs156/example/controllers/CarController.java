@@ -59,7 +59,7 @@ public class CarController extends ApiController {
 	public Car postCar(
 			@ApiParam("make") @RequestParam String make,
 			@ApiParam("model") @RequestParam String model,
-			@ApiParam("model") @RequestParam String year)
+			@ApiParam("year") @RequestParam String year)
 			throws JsonProcessingException {
 
 		// For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
