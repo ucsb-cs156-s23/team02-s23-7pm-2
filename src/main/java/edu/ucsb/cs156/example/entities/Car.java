@@ -1,8 +1,9 @@
 package edu.ucsb.cs156.example.entities;
 
-
 import javax.persistence.Entity;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.GeneratedValue;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,10 +14,13 @@ import lombok.Builder;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Entity(name = "clothingbrands")
-public class ClothingBrands {
-  @Id
-  private String code;
-  private String brand;
-  private String price;
+@Entity(name = "cars")
+public class Car {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+
+	private String make;
+	private String model;
+	private String year;
 }
