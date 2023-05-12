@@ -30,10 +30,10 @@ public class SchoolsController extends ApiController {
     @Autowired
     SchoolRepository schoolRepository;
 
-    @ApiOperation(value = "List all laptops")
+    @ApiOperation(value = "List all schools")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all")
-    public Iterable<School> allLaptops() {
+    public Iterable<School> allSchools() {
         Iterable<School> schools = schoolRepository.findAll();
         return schools;
     }
