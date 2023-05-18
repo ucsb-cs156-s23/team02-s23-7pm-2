@@ -178,7 +178,7 @@ public class StoresControllerTests extends ControllerTestCase {
 
                 Stores stores1 = Stores.builder()
                                 .name("Target")
-                                .location("6865 Hollister Ave")
+                                .location("6865%20Hollister%20Ave")
                                 .price("$$")
                                 .sales("High")
                                 .build();
@@ -188,7 +188,7 @@ public class StoresControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/stores/post?name=Target&location=6865 Hollister Ave&price=$$&sales=High")
+                                post("/api/stores/post?name=Target&location=6865%20Hollister%20Ave&price=$$&sales=High")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
@@ -267,7 +267,7 @@ public class StoresControllerTests extends ControllerTestCase {
                 Stores storesEdited = Stores.builder()
                                 .name("Trader Joe's")
                                 .location("5767 Calle Real")
-                                .price("$$")
+                                .price("$$$")
                                 .sales("Medium")
                                 .build();
 
