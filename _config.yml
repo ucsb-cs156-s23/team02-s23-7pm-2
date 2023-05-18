@@ -23,4 +23,4 @@ repo_name: "TBD"
 repo: ucsb-cs156-s23/team02-s23-7pm-2
 owner: ucsb-cs156-s23
 repo_name: team02-s23-7pm-2
-pull_requests: [{"author":{"id":"MDQ6VXNlcjY0Mzg1Mzgw","is_bot":false,"login":"justinthecao","name":"Justin Cao"},"headRefName":"schoolTest","number":58,"title":"finished the controller test","url":"https://github.com/ucsb-cs156-s23/team02-s23-7pm-2/pull/58"},{"author":{"id":"MDQ6VXNlcjcyODQyMzEy","is_bot":false,"login":"JNewman-cell","name":"Jackson Newman"},"headRefName":"carsCRUD","number":56,"title":"jn-added car CRUD tests","url":"https://github.com/ucsb-cs156-s23/team02-s23-7pm-2/pull/56"}]
+pull_requests: [{"author":{"id":"MDQ6VXNlcjcyODQyMzEy","is_bot":false,"login":"JNewman-cell","name":"Jackson Newman"},"headRefName":"carsCRUD","number":56,"title":"jn-added car CRUD tests","url":"https://github.com/ucsb-cs156-s23/team02-s23-7pm-2/pull/56"}]
