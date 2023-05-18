@@ -24,4 +24,13 @@ public class Stores {
   private String name;  
   private String price;
   private String sales;
+  /*
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private long id;
+
+  private String quarterYYYYQ;
+  private String name;  
+  private LocalDateTime localDateTime;
+  */
 } 
