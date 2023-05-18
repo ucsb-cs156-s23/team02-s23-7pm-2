@@ -31,10 +31,10 @@ public class RestaurantController extends ApiController {
     @Autowired
     RestaurantRepository RestaurantRepository;
 
-    @ApiOperation(value = "List all ucsb dining restaurant")
+    @ApiOperation(value = "List all restaurants")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all")
-    public Iterable<Restaurant> allrestaurants() {
+    public Iterable<Restaurant> allRestaurants() {
         Iterable<Restaurant> restaurant = RestaurantRepository.findAll();
         return restaurant;
     }
@@ -53,7 +53,7 @@ public class RestaurantController extends ApiController {
     @ApiOperation(value = "Create a new restaurant")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
-    public Restaurant postrestaurant(
+    public Restaurant postRestaurant(
         @ApiParam("code") @RequestParam String code,
         @ApiParam("name") @RequestParam String name,
         @ApiParam("hasTakeOutMeal") @RequestParam boolean hasTakeOutMeal,
@@ -77,7 +77,7 @@ public class RestaurantController extends ApiController {
     @ApiOperation(value = "Delete a Restaurant")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("")
-    public Object deleterestaurant(
+    public Object deleteRestaurant(
             @ApiParam("code") @RequestParam String code) {
         Restaurant restaurant = RestaurantRepository.findById(code)
                 .orElseThrow(() -> new EntityNotFoundException(Restaurant.class, code));
@@ -89,7 +89,7 @@ public class RestaurantController extends ApiController {
     @ApiOperation(value = "Update a single restaurant")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("")
-    public Restaurant updaterestaurant(
+    public Restaurant updateRestaurant(
             @ApiParam("code") @RequestParam String code,
             @RequestBody @Valid Restaurant incoming) {
 

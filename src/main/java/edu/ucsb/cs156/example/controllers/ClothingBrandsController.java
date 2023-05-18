@@ -34,71 +34,71 @@ public class ClothingBrandsController extends ApiController {
     @ApiOperation(value = "List all clothing brands")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("/all")
-    public Iterable<ClothingBrands> allCommonss() {
-        Iterable<ClothingBrands> commons = clothingBrandsRepository.findAll();
-        return commons;
+    public Iterable<ClothingBrands> allBrands() {
+        Iterable<ClothingBrands> brands = clothingBrandsRepository.findAll();
+        return brands;
     }
 
-    @ApiOperation(value = "Get a single commons")
+    @ApiOperation(value = "Get a single clothing brand")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("")
     public ClothingBrands getById(
             @ApiParam("code") @RequestParam String code) {
-        ClothingBrands commons = clothingBrandsRepository.findById(code)
+        ClothingBrands brands = clothingBrandsRepository.findById(code)
                 .orElseThrow(() -> new EntityNotFoundException(ClothingBrands.class, code));
 
-        return commons;
+        return brands;
     }
 
-    @ApiOperation(value = "Create a new commons")
+    @ApiOperation(value = "Create a new clothing brand")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
-    public ClothingBrands postCommons(
+    public ClothingBrands postBrands(
         @ApiParam("code") @RequestParam String code,
         @ApiParam("brand") @RequestParam String brand,
         @ApiParam("price") @RequestParam String price
         )
         {
 
-        ClothingBrands commons = new ClothingBrands();
-        commons.setCode(code);
-        commons.setBrand(brand);
-        commons.setPrice(price);
+        ClothingBrands brands = new ClothingBrands();
+        brands.setCode(code);
+        brands.setBrand(brand);
+        brands.setPrice(price);
 
-        ClothingBrands savedCommons = clothingBrandsRepository.save(commons);
+        ClothingBrands savedBrands = clothingBrandsRepository.save(brands);
 
-        return savedCommons;
+        return savedBrands;
     }
 
     @ApiOperation(value = "Delete a ClothingBrands")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @DeleteMapping("")
-    public Object deleteCommons(
+    public Object deleteBrands(
             @ApiParam("code") @RequestParam String code) {
-        ClothingBrands commons = clothingBrandsRepository.findById(code)
+        ClothingBrands brands = clothingBrandsRepository.findById(code)
                 .orElseThrow(() -> new EntityNotFoundException(ClothingBrands.class, code));
 
-        clothingBrandsRepository.delete(commons);
+        clothingBrandsRepository.delete(brands);
         return genericMessage("ClothingBrands with id %s deleted".formatted(code));
     }
 
-    @ApiOperation(value = "Update a single commons")
+    @ApiOperation(value = "Update a single clothing brand")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PutMapping("")
-    public ClothingBrands updateCommons(
+    public ClothingBrands updateBrands(
             @ApiParam("code") @RequestParam String code,
             @RequestBody @Valid ClothingBrands incoming) {
 
-        ClothingBrands commons = clothingBrandsRepository.findById(code)
+        ClothingBrands brands = clothingBrandsRepository.findById(code)
                 .orElseThrow(() -> new EntityNotFoundException(ClothingBrands.class, code));
 
 
-        commons.setCode(incoming.getCode());  
-        commons.setBrand(incoming.getBrand());  
-        commons.setPrice(incoming.getPrice());
+        brands.setCode(incoming.getCode());  
+        brands.setBrand(incoming.getBrand());  
+        brands.setPrice(incoming.getPrice());
 
-        clothingBrandsRepository.save(commons);
+        clothingBrandsRepository.save(brands);
 
-        return commons;
+        return brands;
     }
 }
