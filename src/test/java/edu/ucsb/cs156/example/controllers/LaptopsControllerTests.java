@@ -175,7 +175,7 @@ public class LaptopsControllerTests extends ControllerTestCase {
                                 .description("Extremely fast but expensive")
                                 .build();
 
-                when(LaptopRepository.save(eq(alienware))).thenReturn(alienware);  // TODO: before this eq
+                when(LaptopRepository.save(eq(alienware))).thenReturn(alienware);
 
                 // act
                 MvcResult response = mockMvc.perform(
