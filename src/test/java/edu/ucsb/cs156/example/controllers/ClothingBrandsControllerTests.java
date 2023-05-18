@@ -175,7 +175,7 @@ public class ClothingBrandsControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/clothingbrands/post?name=Ortega&code=ortega&hasSackMeal=true&hasTakeOutMeal=true&hasDiningCam=true&latitude=34.410987&longitude=-119.84709")
+                                post("/api/clothingbrands/post?code=gap&brand=gap&price=$")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
