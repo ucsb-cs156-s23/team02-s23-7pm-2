@@ -247,7 +247,7 @@ public class ClothingBrandsControllerTests extends ControllerTestCase {
                 ClothingBrands supremeEdited = ClothingBrands.builder()
                                 .code("bape")
                                 .brand("bape")
-                                .price("$$$")
+                                .price("$$")
                                 .build();
 
                 String requestBody = mapper.writeValueAsString(supremeEdited);
