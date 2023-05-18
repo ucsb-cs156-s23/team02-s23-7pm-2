@@ -60,19 +60,14 @@ public class StoresController extends ApiController {
     public Stores postStores(
             @ApiParam("location") @RequestParam String location,
             @ApiParam("name") @RequestParam String name,
-            @ApiParam("price") @RequestParam String price;
-            @ApiParam("sales") @RequestParam String sales;
-            throws JsonProcessingException {
-
-        // For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
-        // See: https://www.baeldung.com/spring-date-parameters
-
-
+            @ApiParam("price") @RequestParam String price,
+            @ApiParam("sales") @RequestParam String sales
+        ) {
         Stores stores = new Stores();
         stores.setLocation(location);
         stores.setName(name);
         stores.setPrice(price);
-        stores.setSale(sale);
+        stores.setSales(sales);
 
         Stores savedStore = storesRepository.save(stores);
 
@@ -104,7 +99,7 @@ public class StoresController extends ApiController {
         stores.setLocation(incoming.getLocation());
         stores.setName(incoming.getName());
         stores.setPrice(incoming.getPrice());
-        stores.setSale(incoming.getName());
+        stores.setSales(incoming.getName());
 
         storesRepository.save(stores);
 
