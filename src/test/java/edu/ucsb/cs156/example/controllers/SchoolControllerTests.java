@@ -170,7 +170,7 @@ public class SchoolControllerTests extends ControllerTestCase {
                 School mit = School.builder()
                                 .name("MIT")
                                 .rank("2")
-                                .description("A%20private%20land-grant%20research%20university%20in%20Cambridge,%20Massachusetts.%20Has%20played%20a%20significant%20role%20in%20the%20development%20of%20many%20areas%20of%20modern%20technology%20and%20science."  )
+                                .description("A%20private%20land-grant%20research%20university%20in%20Cambridge,%20Massachusetts.%20Has%20played%20a%20significant%20role%20in%20the%20development%20of%20many%20areas%20of%20modern%20technology%20and%20science.")
                                 .build();
 
                 when(SchoolRepository.save(eq(mit))).thenReturn(mit);
@@ -247,9 +247,9 @@ public class SchoolControllerTests extends ControllerTestCase {
                                 .build();
 
                 School ucsdEdited = School.builder()
-                                .name("UCSD")
+                                .name("USC")
                                 .rank("30")
-                                .description("Public land-grant research university in La Jolla, California. It is ranked among the best universities in the world.")
+                                .description("School in LA")
                                 .build();
 
                 String requestBody = mapper.writeValueAsString(ucsdEdited);
