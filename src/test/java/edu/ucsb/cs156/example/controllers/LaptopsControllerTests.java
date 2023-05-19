@@ -175,7 +175,7 @@ public class LaptopsControllerTests extends ControllerTestCase {
                                 .description("Extremely fast but expensive")
                                 .build();
 
-                when(LaptopRepository.save(eq(alienware))).thenReturn(alienware);  // TODO: before this eq
+                when(LaptopRepository.save(eq(alienware))).thenReturn(alienware);
 
                 // act
                 MvcResult response = mockMvc.perform(
@@ -251,15 +251,15 @@ public class LaptopsControllerTests extends ControllerTestCase {
                                 .build();
 
                 Laptop omenEdited = Laptop.builder()
-                                .name("OMEN 16t-k000")
-                                .cpu("Intel Core i5-12500H")
-                                .gpu("NVIDIA GeForce RTX 3050 Laptop")
+                                .name("OMEN 17t-k000")
+                                .cpu("Intel Core i6-12500H")
+                                .gpu("NVIDIA GeForce RTX 3060 Laptop")
                                 .description("Fast and cheap")
                                 .build();
 
                 String requestBody = mapper.writeValueAsString(omenEdited);
 
-                when(LaptopRepository.findById(123L)).thenReturn(Optional.of(omenEdited));
+                when(LaptopRepository.findById(123L)).thenReturn(Optional.of(omenOrig));
 
                 // act
                 MvcResult response = mockMvc.perform(
