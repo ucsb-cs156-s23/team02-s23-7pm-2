@@ -57,7 +57,7 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
         @Test
         public void logged_out_users_cannot_get_by_id() throws Exception {
-                mockMvc.perform(get("/api/Restaurant?code=carrillo"))
+                mockMvc.perform(get("/api/Restaurant?id=3"))
                                 .andExpect(status().is(403)); // logged out users can't get by id
         }
 
@@ -86,22 +86,20 @@ public class RestaurantControllerTests extends ControllerTestCase {
                 // arrange
 
                 Restaurant restaurant = Restaurant.builder()
+                                .id(3L)
                                 .name("Carrillo")
-                                .code("carrillo")
-                                .hasTakeOutMeal(false)
-                                .latitude(34.409953)
-                                .longitude(-119.85277)
+                                .description("The best")
                                 .build();
 
-                when(RestaurantRepository.findById(eq("carrillo"))).thenReturn(Optional.of(restaurant));
+                when(RestaurantRepository.findById(eq(3L))).thenReturn(Optional.of(restaurant));
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/Restaurant?code=carrillo"))
+                MvcResult response = mockMvc.perform(get("/api/Restaurant?id=3"))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
 
-                verify(RestaurantRepository, times(1)).findById(eq("carrillo"));
+                verify(RestaurantRepository, times(1)).findById(eq(3L));
                 String expectedJson = mapper.writeValueAsString(restaurant);
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(expectedJson, responseString);
@@ -113,18 +111,18 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 // arrange
 
-                when(RestaurantRepository.findById(eq("munger-hall"))).thenReturn(Optional.empty());
+                when(RestaurantRepository.findById(eq(4L))).thenReturn(Optional.empty());
 
                 // act
-                MvcResult response = mockMvc.perform(get("/api/Restaurant?code=munger-hall"))
+                MvcResult response = mockMvc.perform(get("/api/Restaurant?id=4"))
                                 .andExpect(status().isNotFound()).andReturn();
 
                 // assert
 
-                verify(RestaurantRepository, times(1)).findById(eq("munger-hall"));
+                verify(RestaurantRepository, times(1)).findById(eq(4L));
                 Map<String, Object> json = responseToJson(response);
                 assertEquals("EntityNotFoundException", json.get("type"));
-                assertEquals("Restaurant with id munger-hall not found", json.get("message"));
+                assertEquals("Restaurant with id 4 not found", json.get("message"));
         }
 
         @WithMockUser(roles = { "USER" })
@@ -135,18 +133,14 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 Restaurant carrillo = Restaurant.builder()
                                 .name("Carrillo")
-                                .code("carrillo")
-                                .hasTakeOutMeal(false)
-                                .latitude(34.409953)
-                                .longitude(-119.85277)
+                                .id(3L)
+                                .description("The best")
                                 .build();
 
                 Restaurant dlg = Restaurant.builder()
                                 .name("De La Guerra")
-                                .code("de-la-guerra")
-                                .hasTakeOutMeal(false)
-                                .latitude(34.409811)
-                                .longitude(-119.845026)
+                                .id(4L)
+                                .description("The worst")
                                 .build();
 
                 ArrayList<Restaurant> expectedrestaurant = new ArrayList<>();
@@ -173,17 +167,14 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 Restaurant ortega = Restaurant.builder()
                                 .name("Ortega")
-                                .code("ortega")
-                                .hasTakeOutMeal(true)
-                                .latitude(34.410987)
-                                .longitude(-119.84709)
+                                .description("The okay")
                                 .build();
 
                 when(RestaurantRepository.save(eq(ortega))).thenReturn(ortega);
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/Restaurant/post?name=Ortega&code=ortega&hasSackMeal=true&hasTakeOutMeal=true&hasDiningCam=true&latitude=34.410987&longitude=-119.84709")
+                                post("/api/Restaurant/post?name=Ortega&description=The okay")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
@@ -201,26 +192,24 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 Restaurant portola = Restaurant.builder()
                                 .name("Portola")
-                                .code("portola")
-                                .hasTakeOutMeal(true)
-                                .latitude(34.417723)
-                                .longitude(-119.867427)
+                                .id(7L)
+                                .description("The far")
                                 .build();
 
-                when(RestaurantRepository.findById(eq("portola"))).thenReturn(Optional.of(portola));
+                when(RestaurantRepository.findById(eq(7L))).thenReturn(Optional.of(portola));
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                delete("/api/Restaurant?code=portola")
+                                delete("/api/Restaurant?id=7")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
-                verify(RestaurantRepository, times(1)).findById("portola");
+                verify(RestaurantRepository, times(1)).findById(7L);
                 verify(RestaurantRepository, times(1)).delete(any());
 
                 Map<String, Object> json = responseToJson(response);
-                assertEquals("Restaurant with id portola deleted", json.get("message"));
+                assertEquals("Restaurant with id 7 deleted", json.get("message"));
         }
 
         @WithMockUser(roles = { "ADMIN", "USER" })
@@ -229,18 +218,18 @@ public class RestaurantControllerTests extends ControllerTestCase {
                         throws Exception {
                 // arrange
 
-                when(RestaurantRepository.findById(eq("munger-hall"))).thenReturn(Optional.empty());
+                when(RestaurantRepository.findById(eq(1000L))).thenReturn(Optional.empty());
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                delete("/api/Restaurant?code=munger-hall")
+                                delete("/api/Restaurant?id=1000")
                                                 .with(csrf()))
                                 .andExpect(status().isNotFound()).andReturn();
 
                 // assert
-                verify(RestaurantRepository, times(1)).findById("munger-hall");
+                verify(RestaurantRepository, times(1)).findById(1000L);
                 Map<String, Object> json = responseToJson(response);
-                assertEquals("Restaurant with id munger-hall not found", json.get("message"));
+                assertEquals("Restaurant with id 1000 not found", json.get("message"));
         }
 
         @WithMockUser(roles = { "ADMIN", "USER" })
@@ -250,27 +239,21 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 Restaurant carrilloOrig = Restaurant.builder()
                                 .name("Carrillo")
-                                .code("carrillo")
-                                .hasTakeOutMeal(false)
-                                .latitude(34.409953)
-                                .longitude(-119.85277)
+                                .description("The best")
                                 .build();
 
                 Restaurant carrilloEdited = Restaurant.builder()
                                 .name("Carrillo Dining Hall")
-                                .code("carrillo")
-                                .hasTakeOutMeal(true)
-                                .latitude(34.409954)
-                                .longitude(-119.85278)
+                                .description("The bestest")
                                 .build();
 
                 String requestBody = mapper.writeValueAsString(carrilloEdited);
 
-                when(RestaurantRepository.findById(eq("carrillo"))).thenReturn(Optional.of(carrilloOrig));
+                when(RestaurantRepository.findById(eq(3L))).thenReturn(Optional.of(carrilloOrig));
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                put("/api/Restaurant?code=carrillo")
+                                put("/api/Restaurant?id=3")
                                                 .contentType(MediaType.APPLICATION_JSON)
                                                 .characterEncoding("utf-8")
                                                 .content(requestBody)
@@ -278,7 +261,7 @@ public class RestaurantControllerTests extends ControllerTestCase {
                                 .andExpect(status().isOk()).andReturn();
 
                 // assert
-                verify(RestaurantRepository, times(1)).findById("carrillo");
+                verify(RestaurantRepository, times(1)).findById(3L);
                 verify(RestaurantRepository, times(1)).save(carrilloEdited); // should be saved with updated info
                 String responseString = response.getResponse().getContentAsString();
                 assertEquals(requestBody, responseString);
@@ -291,19 +274,16 @@ public class RestaurantControllerTests extends ControllerTestCase {
 
                 Restaurant editedrestaurant = Restaurant.builder()
                                 .name("Munger Hall")
-                                .code("munger-hall")
-                                .hasTakeOutMeal(false)
-                                .latitude(34.420799)
-                                .longitude(-119.852617)
+                                .description("The crazy one")
                                 .build();
 
                 String requestBody = mapper.writeValueAsString(editedrestaurant);
 
-                when(RestaurantRepository.findById(eq("munger-hall"))).thenReturn(Optional.empty());
+                when(RestaurantRepository.findById(eq(8L))).thenReturn(Optional.empty());
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                put("/api/Restaurant?code=munger-hall")
+                                put("/api/Restaurant?id=8")
                                                 .contentType(MediaType.APPLICATION_JSON)
                                                 .characterEncoding("utf-8")
                                                 .content(requestBody)
@@ -311,9 +291,9 @@ public class RestaurantControllerTests extends ControllerTestCase {
                                 .andExpect(status().isNotFound()).andReturn();
 
                 // assert
-                verify(RestaurantRepository, times(1)).findById("munger-hall");
+                verify(RestaurantRepository, times(1)).findById(8L);
                 Map<String, Object> json = responseToJson(response);
-                assertEquals("Restaurant with id munger-hall not found", json.get("message"));
+                assertEquals("Restaurant with id 8 not found", json.get("message"));
 
         }
 }
